@@ -15,7 +15,7 @@ const apiVersion="2023-08-01-preview"
 //   event.respondWith(handleRequest(event.request));
 // });
 
-async function handleRequest(request) {
+export async function handleRequest(request) {
   if (request.method === 'OPTIONS') {
     return handleOPTIONS(request)
   }
