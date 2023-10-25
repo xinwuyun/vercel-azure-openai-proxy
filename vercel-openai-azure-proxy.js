@@ -6,8 +6,8 @@ const deployNameGPT35 = process.env.DEPLOY_NAME_GPT35;
 const deployNameGPT35_16K = process.env.DEPLOY_NAME_GPT35_16K;
 const deployNameGPT4 = process.env.DEPLOY_NAME_GPT4;
 const mapper = {
-    'gpt-3.5-turbo': deployNameGPT35,
-    'gpt-3.5-turbo-16k': deployNameGPT35_16K,
+    'gpt-3.5-turbo': "gpt3",
+    'gpt-3.5-turbo-16k': "gpt-35-turbo-16k",
     // 'gpt-4': DEPLOY_NAME_GPT4,
     // 'gpt-4-32k': DEPLOY_NAME_GPT4_32K,
 };
