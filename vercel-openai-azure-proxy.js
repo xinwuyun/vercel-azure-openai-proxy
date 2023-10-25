@@ -17,7 +17,7 @@ const apiVersion="2023-08-01-preview"
 
 async function handleRequest(request, res, path) {
   if (request.method === 'OPTIONS') {
-    return handleOPTIONS(request)
+    return handleOPTIONS(request, res)
   }
     
   const url = new URL(path, 'http://localhost'); // Use a dummy base URL
