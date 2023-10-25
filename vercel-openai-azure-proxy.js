@@ -66,16 +66,12 @@ async function handleRequest(request, res, path) {
   };
 
   let response = await fetch(fetchAPI, payload);
-  response = new Response(response.body, response);
-  response.headers.set("Access-Control-Allow-Origin", "*");
-
-  if (body?.stream != true){
-    return response
-  } 
-
-  let { readable, writable } = new TransformStream()
-  stream(response.body, writable);
-  return new Response(readable, response);
+  if (response.status !== 200) {
+    res.status(response.status).send(response.statusText);
+    return;
+  }
+  res.setHeader('Content-Type', response.headers.get('Content-Type'));
+  await stream(response.body, res);
 
 }
 
