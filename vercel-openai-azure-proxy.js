@@ -70,7 +70,7 @@ function sleep(ms) {
 }
 
 function getModelMapper(model) {
-  const deployName = mapper[modelName] || '';
+  const deployName = mapper[model] || '';
   if (deployName === '') {
     throw new Error("Invalid model specified");
   }
