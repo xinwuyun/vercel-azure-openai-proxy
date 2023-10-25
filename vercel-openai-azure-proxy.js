@@ -15,7 +15,7 @@ const apiVersion="2023-08-01-preview"
 //   event.respondWith(handleRequest(event.request));
 // });
 
-export async function handleRequest(request, res, path) {
+async function handleRequest(request, res, path) {
   if (request.method === 'OPTIONS') {
     return handleOPTIONS(request)
   }
@@ -235,3 +235,7 @@ async function handleOPTIONS(request, res) {
       'Access-Control-Allow-Headers': '*'
     }).status(200).send();
 }
+
+module.exports = {
+  handleRequest
+};
