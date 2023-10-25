@@ -1,12 +1,17 @@
 // The name of your Azure OpenAI Resource for GPT-3.5 and GPT-4.
-const resourceNameGPT35 = process.env.RESOURCE_NAME_GPT35;
-const resourceNameGPT4 = process.env.RESOURCE_NAME_GPT4;
+const resourceName = process.env.RESOURCE_NAME;
 
 // The deployment name you chose when you deployed the model for GPT-3.5 and GPT-4.
 const deployNameGPT35 = process.env.DEPLOY_NAME_GPT35;
+const deployNameGPT35_16K = process.env.DEPLOY_NAME_GPT35_16K;
 const deployNameGPT4 = process.env.DEPLOY_NAME_GPT4;
-
-const apiVersion = "2023-03-15-preview";
+const mapper = {
+    'gpt-3.5-turbo': deployNameGPT35,
+    'gpt-3.5-turbo-16k': deployNameGPT35_16K,
+    // 'gpt-4': DEPLOY_NAME_GPT4,
+    // 'gpt-4-32k': DEPLOY_NAME_GPT4_32K,
+};
+const apiVersion="2023-08-01-preview"
 
 async function handleRequest(request,res, path) {
   if (request.method === 'OPTIONS') {
@@ -65,13 +70,11 @@ function sleep(ms) {
 }
 
 function getModelMapper(model) {
-  if (model === "gpt-3.5-turbo") {
-    return { resourceName: resourceNameGPT35, deployName: deployNameGPT35 };
-  } else if (model === "gpt-4") {
-    return { resourceName: resourceNameGPT4, deployName: deployNameGPT4 };
-  } else {
+  const deployName = mapper[modelName] || '';
+  if deployName === '' {
     throw new Error("Invalid model specified");
   }
+  return { resourceName: resourceName, deployName:  deployName};
 }
 
 async function stream(readable, res) {
