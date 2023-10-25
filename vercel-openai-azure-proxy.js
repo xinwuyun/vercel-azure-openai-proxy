@@ -36,7 +36,7 @@ async function handleRequest(request, res, path) {
 
   let body;
   if (request.method === 'POST') {
-    body = await request.json();
+    body = request.body;
   }
 
   const modelName = body?.model;  
