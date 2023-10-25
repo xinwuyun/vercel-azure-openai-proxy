@@ -71,7 +71,7 @@ function sleep(ms) {
 
 function getModelMapper(model) {
   const deployName = mapper[modelName] || '';
-  if deployName === '' {
+  if (deployName === '') {
     throw new Error("Invalid model specified");
   }
   return { resourceName: resourceName, deployName:  deployName};
